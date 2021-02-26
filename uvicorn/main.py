@@ -207,6 +207,20 @@ def print_version(ctx, param, value):
     show_default=True,
 )
 @click.option(
+    "--ws_ping_interval",
+    type=int,
+    default=20,
+    help="Websockets ping interval.",
+    show_default=True,
+)
+@click.option(
+    "--ws_ping_timeout",
+    type=int,
+    default=20,
+    help="Websockets ping timeout.",
+    show_default=True,
+)
+@click.option(
     "--ssl-keyfile", type=str, default=None, help="SSL key file", show_default=True
 )
 @click.option(
@@ -307,6 +321,8 @@ def main(
     backlog: int,
     limit_max_requests: int,
     timeout_keep_alive: int,
+    ws_ping_interval: int,
+    ws_ping_timeout: int,
     ssl_keyfile: str,
     ssl_certfile: str,
     ssl_keyfile_password: str,
@@ -348,6 +364,8 @@ def main(
         "backlog": backlog,
         "limit_max_requests": limit_max_requests,
         "timeout_keep_alive": timeout_keep_alive,
+        "ws_ping_interval": ws_ping_interval,
+        "ws_ping_timeout": ws_ping_timeout,
         "ssl_keyfile": ssl_keyfile,
         "ssl_certfile": ssl_certfile,
         "ssl_keyfile_password": ssl_keyfile_password,
