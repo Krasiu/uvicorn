@@ -207,14 +207,14 @@ def print_version(ctx, param, value):
     show_default=True,
 )
 @click.option(
-    "--ws_ping_interval",
+    "--ws-ping-interval",
     type=int,
     default=20,
     help="Websockets ping interval.",
     show_default=True,
 )
 @click.option(
-    "--ws_ping_timeout",
+    "--ws-ping-timeout",
     type=int,
     default=20,
     help="Websockets ping timeout.",
@@ -364,8 +364,8 @@ def main(
         "backlog": backlog,
         "limit_max_requests": limit_max_requests,
         "timeout_keep_alive": timeout_keep_alive,
-        "ws_ping_interval": ws_ping_interval,
-        "ws_ping_timeout": ws_ping_timeout,
+        "ws_ping_interval": ws_ping_interval if ws_ping_interval > 0 else None,
+        "ws_ping_timeout": ws_ping_timeout if ws_ping_timeout > 0 else None,
         "ssl_keyfile": ssl_keyfile,
         "ssl_certfile": ssl_certfile,
         "ssl_keyfile_password": ssl_keyfile_password,
