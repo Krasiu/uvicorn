@@ -156,6 +156,8 @@ class Config:
         ssl_ciphers="TLSv1",
         headers=None,
         factory=False,
+        ws_ping_interval=20,
+        ws_ping_timeout=20,
     ):
         self.app = app
         self.host = host
@@ -193,6 +195,8 @@ class Config:
         self.headers = headers if headers else []  # type: List[str]
         self.encoded_headers = None  # type: List[Tuple[bytes, bytes]]
         self.factory = factory
+        self.ws_ping_interval = ws_ping_interval
+        self.ws_ping_timeout = ws_ping_timeout
 
         self.loaded = False
         self.configure_logging()

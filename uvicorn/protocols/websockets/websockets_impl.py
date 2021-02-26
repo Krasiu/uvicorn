@@ -33,6 +33,10 @@ class WebSocketProtocol(websockets.WebSocketServerProtocol):
         self.logger = logging.getLogger("uvicorn.error")
         self.root_path = config.root_path
 
+        # Websockets ping configuration
+        self.ping_interval = config.ws_ping_interval
+        self.ping_timeout = config.ws_ping_timeout
+
         # Shared server state
         self.connections = server_state.connections
         self.tasks = server_state.tasks
@@ -59,6 +63,8 @@ class WebSocketProtocol(websockets.WebSocketServerProtocol):
             ws_handler=self.ws_handler,
             ws_server=self.ws_server,
             extensions=[ServerPerMessageDeflateFactory()],
+            ping_interval=self.ping_interval,
+            ping_timeout=self.ping_timeout,
         )
 
     def connection_made(self, transport):
